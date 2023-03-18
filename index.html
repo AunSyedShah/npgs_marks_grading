@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NPGS | Grading Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <h3>New Pearl Grammar School</h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h4>Grading Calculator</h4>
+        </div>
+        <!-- bootstrap form with two fields, marks obtained and total marks-->
+        <form class="my-2">
+            <div class="mb-3">
+                <label for="marks" class="form-label">Marks obtained</label>
+                <input type="number" class="form-control" id="marks" placeholder="Enter marks obtained"
+                    onkeydown="calculate_percentage_grade()" onkeyup="calculate_percentage_grade()">
+            </div>
+            <div class="mb-3">
+                <label for="total" class="form-label">Total marks</label>
+                <input type="number" class="form-control" id="total" placeholder="Enter total marks"
+                    onkeydown="calculate_percentage_grade()" onkeyup="calculate_percentage_grade()">
+            </div>
+        </form>
+        <h3 id="grade"></h3>
+        <h3 id="percentage"></h3>
+    </div>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">Made with ❤️ Syed Aun Muhammad
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script>
+        function calculate_percentage_grade() {
+            let marks = document.getElementById("marks").value;
+            let total = document.getElementById("total").value;
+            let percentage = (marks / total) * 100;
+            // round off to 2 decimal places
+            percentage = percentage.toFixed(2);
+            document.getElementById("percentage").innerHTML = "Percentage: " + percentage + "%";
+            if (percentage >= 80) {
+                document.getElementById("grade").innerHTML = "Grade: A+";
+            }
+            else if (percentage >= 70) {
+                document.getElementById("grade").innerHTML = "Grade: A";
+            }
+            else if (percentage >= 60) {
+                document.getElementById("grade").innerHTML = "Grade: B";
+            }
+            else if (percentage >= 45) {
+                document.getElementById("grade").innerHTML = "Grade: C";
+            }
+            else {
+                document.getElementById("grade").innerHTML = "Grade: F";
+            }
+        }
+    </script>
+</body>
+
+</html>
